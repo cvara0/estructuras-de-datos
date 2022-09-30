@@ -35,6 +35,12 @@ public class FormServicio {
         return jButton;
     }
 
+    public static JButton setJButtonLimpiar(int x,int y,int w,int h){
+        JButton jButton= new JButton("Limpiar");
+        jButton.setBounds(x,y,w,h);
+        return jButton;
+    }
+
     public static JButton setJButton2(int x,int y,int w,int h){
         JButton jButton= new JButton("<html>2 - Sumar todos los nodos de las posiciones impares.</html>");
         jButton.setBounds(x,y,w,h);
@@ -49,6 +55,12 @@ public class FormServicio {
 
     public static JButton setJButton4(int x,int y,int w,int h){
         JButton jButton= new JButton("<html>4 - Intercambiar el primer nodo con el último de la lista. </html>");
+        jButton.setBounds(x,y,w,h);
+        return jButton;
+    }
+
+    public static JButton setJButton5(int x,int y,int w,int h){
+        JButton jButton= new JButton("<html>5 - Borrar todos los nodos que coinciden con la información del primero de la lista.  </html>");
         jButton.setBounds(x,y,w,h);
         return jButton;
     }
