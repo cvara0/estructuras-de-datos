@@ -70,8 +70,8 @@ public class Formulario extends JFrame{
         jButton1.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent arg0) {
-                lista.insertarPar(textField1.getText() ,textField2.getText());
-                jLabelLista.setText("Lista : "+lista.imprimir());
+                lista.insertarPar(textField2.getText() ,textField1.getText());
+                jLabelLista.setText("Lista <-Prim. Ult.-> : [ "+lista.imprimir()+" ]");
                 textField1.setText("");
                 textField2.setText("");
                 contentPane.updateUI();
@@ -84,7 +84,7 @@ public class Formulario extends JFrame{
         {
             public void actionPerformed(ActionEvent arg0) {
                 lista.limpiar();
-                jLabelLista.setText("Lista : "+lista.imprimir());
+                jLabelLista.setText("Lista <-Prim. Ult.-> : [ "+lista.imprimir()+" ]");
                 textField1.setText("");
                 textField2.setText("");
                 jLabelConsigna2.setText("Consigna 2 :");
@@ -92,7 +92,7 @@ public class Formulario extends JFrame{
             }
         });
 //////////
-        jLabelLista=FormServicio.setJLabel("Lista : ",(int)(x*0.2),y*15,(int)(w*2.6),h);
+        jLabelLista=FormServicio.setJLabel("Lista: ",(int)(x*0.2),y*15,(int)(w*2.6),h);
         contentPane.add(jLabelLista);
 
 //////////
@@ -117,7 +117,7 @@ public class Formulario extends JFrame{
         {
             public void actionPerformed(ActionEvent arg0) {
                 lista.elimnarPrimeroYUltimo();
-                jLabelLista.setText("Lista : "+lista.imprimir());
+                jLabelLista.setText("Lista <-Prim. Ult.-> : [ "+lista.imprimir()+" ]");
                 textField1.setText("");
                 textField2.setText("");
                 jLabelConsigna2.setText("Consigna 2 : ");
@@ -133,7 +133,7 @@ public class Formulario extends JFrame{
         {
             public void actionPerformed(ActionEvent arg0) {
                 lista.cambiarPrimeroConUltimo();
-                jLabelLista.setText("Lista : "+lista.imprimir());
+                jLabelLista.setText("Lista <-Prim. Ult.-> : [ "+lista.imprimir()+" ]");
                 textField1.setText("");
                 textField2.setText("");
                 jLabelConsigna2.setText("Consigna 2 : ");
@@ -144,6 +144,18 @@ public class Formulario extends JFrame{
 ////////
         JButton jButton5=FormServicio.setJButton5((int)(x*0.2),y*40,(int)(w*2.6),h);
         contentPane.add(jButton5);
+
+        jButton5.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0) {
+                lista.eliminarIgualesAInfoPrimero();
+                jLabelLista.setText("Lista <-Prim. Ult.-> : [ "+lista.imprimir()+" ]");
+                textField1.setText("");
+                textField2.setText("");
+                jLabelConsigna2.setText("Consigna 2 : ");
+                contentPane.updateUI();
+            }
+        });
 
         contentPane.add(FormServicio.setJLabel(
                 "Cristian V.R. Parra -- Desempeño 1 -- AED"

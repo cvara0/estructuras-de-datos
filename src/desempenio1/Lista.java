@@ -25,8 +25,8 @@ public class Lista {
             } else {
                 int intA = Integer.parseInt(a);
                 int intB = Integer.parseInt(b);
-                insertarAlFinal(intA);
                 insertarAlFinal(intB);
+                insertarAlFinal(intA);
             }
         } catch (NumberFormatException e) {
             System.out.println("valor/es incorrectos");
@@ -35,21 +35,46 @@ public class Lista {
 
     public void elimnarPrimeroYUltimo() {
         try {
-            eliminarUltimo();
             eliminarPrimero();
+            eliminarUltimo();
         } catch (NullPointerException e) {
             System.out.println("Lista vacia");
         }
-
     }
 
     public void cambiarPrimeroConUltimo() {
-        int primero = extraerPrimero();
         int ultimo = extraerUltimo();
+        int primero = extraerPrimero();
         elimnarPrimeroYUltimo();
         insertarAlPrincipio(ultimo);
         insertarAlFinal(primero);
     }
+
+    public void eliminarIgualesAInfoPrimero() {
+        Nodo reco;
+        reco = raiz;
+        int pos=2;
+        int primero = extraerPrimero();
+        try {
+            while (reco.sig != null) {
+                reco = reco.sig;
+
+
+                if (reco.info == primero) {
+                    //System.out.println(pos);
+                    borrar(pos);
+
+                    pos--;
+                }
+                pos++;
+
+            }
+
+        } catch (NullPointerException e) {
+            System.out.println("Lista vacia");
+        }
+    }
+
 
     public void insertarAlFinal(int x) {
         Nodo nuevo = new Nodo();
@@ -63,7 +88,7 @@ public class Lista {
         nuevo.sig = null;
     }
 
-    public void eliminarUltimo() {
+    public void eliminarPrimero() {
         Nodo reco;
         reco = raiz;
         try {
@@ -100,7 +125,7 @@ public class Lista {
         raiz = nuevo;
     }
 
-    public void eliminarPrimero() {
+    public void eliminarUltimo() {
         raiz = raiz.sig;
         try {
             if (raiz != null)
@@ -136,6 +161,26 @@ public class Lista {
         }
         System.out.println();
         return lista;
+    }
+
+    public void borrar(int pos) {
+        if (pos <= cantidad()) {
+            if (pos == 1) {
+                raiz = raiz.sig;
+                if (raiz != null)
+                    raiz.ant = null;
+            } else {
+                Nodo reco;
+                reco = raiz;
+                for (int f = 1; f <= pos - 2; f++)
+                    reco = reco.sig;
+                Nodo prox = reco.sig;
+                prox = prox.sig;
+                reco.sig = prox;
+                if (prox != null)
+                    prox.ant = reco;
+            }
+        }
     }
 
     public void limpiar() {
