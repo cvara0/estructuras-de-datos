@@ -2,6 +2,7 @@ package desempenio1;
 
 import clase5ListaGenericaDobleEnlace.ListaGenDobleEnlace;
 import clase6ProblemaAplicacionPila.AplicacionPila;
+import sun.util.locale.provider.JRELocaleConstants;
 
 public class Lista {
     private Nodo raiz;
@@ -33,8 +34,21 @@ public class Lista {
     }
 
     public void elimnarPrimeroYUltimo() {
-        eliminarUltimo();
-        eliminarPrimero();
+        try {
+            eliminarUltimo();
+            eliminarPrimero();
+        } catch (NullPointerException e) {
+            System.out.println("Lista vacia");
+        }
+
+    }
+
+    public void cambiarPrimeroConUltimo() {
+        int primero = extraerPrimero();
+        int ultimo = extraerUltimo();
+        elimnarPrimeroYUltimo();
+        insertarAlPrincipio(ultimo);
+        insertarAlFinal(primero);
     }
 
     public void insertarAlFinal(int x) {
@@ -52,14 +66,25 @@ public class Lista {
     public void eliminarUltimo() {
         Nodo reco;
         reco = raiz;
-        for (int f = 1; f <= cantidad() - 2; f++)
-            reco = reco.sig;
-        Nodo prox = reco.sig;
-        prox = prox.sig;
-        reco.sig = prox;
-        if (prox != null)
-            prox.ant = reco;
+        try {
+            for (int f = 1; f <= cantidad() - 2; f++)
+                reco = reco.sig;
+            Nodo prox = reco.sig;
+            prox = prox.sig;
+            reco.sig = prox;
+            if (prox != null)
+                prox.ant = reco;
+        } catch (NullPointerException e) {
+            System.out.println("Lista vacia");
+        }
+    }
 
+    public int extraerUltimo() {
+        Nodo reco;
+        reco = raiz;
+        while (reco.sig != null)
+            reco = reco.sig;
+        return reco.info;
     }
 
     public void insertarAlPrincipio(int x) {
@@ -69,17 +94,27 @@ public class Lista {
         nuevo.info = x;
         if (raiz == null) {
             nuevo.sig = null;
-            raiz = nuevo;
         } else {
             nuevo.sig = raiz;
-            raiz = nuevo;
         }
+        raiz = nuevo;
     }
 
     public void eliminarPrimero() {
         raiz = raiz.sig;
-        if (raiz != null)
-            raiz.ant = null;
+        try {
+            if (raiz != null)
+                raiz.ant = null;
+        } catch (NullPointerException e) {
+            System.out.println("Lista vacia");
+        }
+
+    }
+
+    public int extraerPrimero() {
+        Nodo reco;
+        reco = raiz;
+        return reco.info;
     }
 
     public int cantidad() {
@@ -96,7 +131,7 @@ public class Lista {
         Nodo reco = raiz;
         String lista = "";
         while (reco != null) {
-            lista += (" "+reco.info + " ");
+            lista += (" " + reco.info + " ");
             reco = reco.sig;
         }
         System.out.println();

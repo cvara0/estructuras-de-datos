@@ -129,6 +129,19 @@ public class Formulario extends JFrame{
         JButton jButton4=FormServicio.setJButton4((int)(x*0.2),y*35,(int)(w*2.6),h);
         contentPane.add(jButton4);
 
+        jButton4.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0) {
+                lista.cambiarPrimeroConUltimo();
+                jLabelLista.setText("Lista : "+lista.imprimir());
+                textField1.setText("");
+                textField2.setText("");
+                jLabelConsigna2.setText("Consigna 2 : ");
+                contentPane.updateUI();
+            }
+        });
+
+////////
         JButton jButton5=FormServicio.setJButton5((int)(x*0.2),y*40,(int)(w*2.6),h);
         contentPane.add(jButton5);
 
