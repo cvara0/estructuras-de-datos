@@ -71,7 +71,7 @@ public class Formulario extends JFrame{
         {
             public void actionPerformed(ActionEvent arg0) {
                 lista.insertarPar(textField2.getText() ,textField1.getText());
-                jLabelLista.setText("Lista <-Prim. Ult.-> : [ "+lista.imprimir()+" ]");
+                jLabelLista.setText("Lista : [ "+lista.imprimir()+" ]");
                 textField1.setText("");
                 textField2.setText("");
                 contentPane.updateUI();
@@ -84,7 +84,7 @@ public class Formulario extends JFrame{
         {
             public void actionPerformed(ActionEvent arg0) {
                 lista.limpiar();
-                jLabelLista.setText("Lista <-Prim. Ult.-> : [ "+lista.imprimir()+" ]");
+                jLabelLista.setText("Lista : [ "+lista.imprimir()+" ]");
                 textField1.setText("");
                 textField2.setText("");
                 jLabelConsigna2.setText("Consigna 2 :");
@@ -117,7 +117,7 @@ public class Formulario extends JFrame{
         {
             public void actionPerformed(ActionEvent arg0) {
                 lista.elimnarPrimeroYUltimo();
-                jLabelLista.setText("Lista <-Prim. Ult.-> : [ "+lista.imprimir()+" ]");
+                jLabelLista.setText("Lista : [ "+lista.imprimir()+" ]");
                 textField1.setText("");
                 textField2.setText("");
                 jLabelConsigna2.setText("Consigna 2 : ");
@@ -133,7 +133,7 @@ public class Formulario extends JFrame{
         {
             public void actionPerformed(ActionEvent arg0) {
                 lista.cambiarPrimeroConUltimo();
-                jLabelLista.setText("Lista <-Prim. Ult.-> : [ "+lista.imprimir()+" ]");
+                jLabelLista.setText("Lista : [ "+lista.imprimir()+" ]");
                 textField1.setText("");
                 textField2.setText("");
                 jLabelConsigna2.setText("Consigna 2 : ");
@@ -149,7 +149,7 @@ public class Formulario extends JFrame{
         {
             public void actionPerformed(ActionEvent arg0) {
                 lista.eliminarIgualesAInfoPrimero();
-                jLabelLista.setText("Lista <-Prim. Ult.-> : [ "+lista.imprimir()+" ]");
+                jLabelLista.setText("Lista : [ "+lista.imprimir()+" ]");
                 textField1.setText("");
                 textField2.setText("");
                 jLabelConsigna2.setText("Consigna 2 : ");

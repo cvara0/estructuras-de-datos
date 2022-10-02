@@ -7,15 +7,11 @@ import sun.util.locale.provider.JRELocaleConstants;
 public class Lista {
     private Nodo raiz;
 
-    String mensajeErr;
-
     public Lista() {
         this.raiz = null;
-        this.mensajeErr = "";
     }
 
     public void insertarPar(String a, String b) {
-
         try {
             if (cantidad() != 4) {
                 int intA = Integer.parseInt(a);
@@ -35,60 +31,66 @@ public class Lista {
 
     public void elimnarPrimeroYUltimo() {
         try {
-            eliminarPrimero();
-            eliminarUltimo();
+            eliminarPrimeroIngresado();
+            eliminarUltimoIngresado();
         } catch (NullPointerException e) {
             System.out.println("Lista vacia");
         }
     }
 
     public void cambiarPrimeroConUltimo() {
-        int ultimo = extraerUltimo();
-        int primero = extraerPrimero();
-        elimnarPrimeroYUltimo();
-        insertarAlPrincipio(ultimo);
-        insertarAlFinal(primero);
-    }
-
-    public void eliminarIgualesAInfoPrimero() {
-        Nodo reco;
-        reco = raiz;
-        int pos=2;
-        int primero = extraerPrimero();
         try {
-            while (reco.sig != null) {
-                reco = reco.sig;
-
-
-                if (reco.info == primero) {
-                    //System.out.println(pos);
-                    borrar(pos);
-
-                    pos--;
-                }
-                pos++;
-
-            }
-
+            int ultimo = extraerUltimo();
+            int primero = extraerPrimero();
+            elimnarPrimeroYUltimo();
+            insertarAlPrincipio(ultimo);
+            insertarAlFinal(primero);
         } catch (NullPointerException e) {
             System.out.println("Lista vacia");
         }
     }
 
-
-    public void insertarAlFinal(int x) {
-        Nodo nuevo = new Nodo();
-        nuevo.info = x;
-        Nodo reco = raiz;
-        while (reco.sig != null) {
-            reco = reco.sig;
+    //primero de la lista
+    public void eliminarIgualesAInfoPrimero() {
+        Nodo reco;
+        reco = raiz;
+        int pos = 2;
+        try {
+            int primero = extraerPrimero();
+            while (reco.sig != null) {
+                reco = reco.sig;
+                if (reco.info == primero) {
+                    borrar(pos);
+                    pos--;
+                }
+                pos++;
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Lista vacia");
         }
-        reco.sig = nuevo;
-        nuevo.ant = reco;
-        nuevo.sig = null;
     }
 
-    public void eliminarPrimero() {
+//final de la lista
+    public void insertarAlFinal(int x) {
+        Nodo nuevo = new Nodo();
+        try {
+            nuevo.info = x;
+            Nodo reco = raiz;
+            while (reco.sig != null) {
+                reco = reco.sig;
+            }
+            reco.sig = nuevo;
+            nuevo.ant = reco;
+            nuevo.sig = null;
+        } catch (NumberFormatException e) {
+            System.out.println("Valor incorrecto");
+        } catch (NullPointerException e) {
+            System.out.println("Campo vacio");
+        }
+    }
+
+    //primero ingresado
+    public void eliminarPrimeroIngresado() {
         Nodo reco;
         reco = raiz;
         try {
@@ -104,28 +106,42 @@ public class Lista {
         }
     }
 
+    //ultimo en la lista
     public int extraerUltimo() {
         Nodo reco;
         reco = raiz;
-        while (reco.sig != null)
-            reco = reco.sig;
+        try {
+            while (reco.sig != null)
+                reco = reco.sig;
+        } catch (NullPointerException e) {
+            System.out.println("Lista vacia");
+        }
         return reco.info;
     }
 
+    //principio de la lista
     public void insertarAlPrincipio(int x) {
 
         Nodo nuevo;
         nuevo = new Nodo();
-        nuevo.info = x;
-        if (raiz == null) {
-            nuevo.sig = null;
-        } else {
-            nuevo.sig = raiz;
+
+        try {
+            nuevo.info = x;
+            if (raiz == null) {
+                nuevo.sig = null;
+            } else {
+                nuevo.sig = raiz;
+            }
+            raiz = nuevo;
+        } catch (NumberFormatException e) {
+            System.out.println("Valor incorrecto");
+        } catch (NullPointerException e) {
+            System.out.println("Campo vacio");
         }
-        raiz = nuevo;
     }
 
-    public void eliminarUltimo() {
+    //ultimo ingresado
+    public void eliminarUltimoIngresado() {
         raiz = raiz.sig;
         try {
             if (raiz != null)
@@ -133,13 +149,11 @@ public class Lista {
         } catch (NullPointerException e) {
             System.out.println("Lista vacia");
         }
-
     }
 
+    //primero de la lista
     public int extraerPrimero() {
-        Nodo reco;
-        reco = raiz;
-        return reco.info;
+        return raiz.info;
     }
 
     public int cantidad() {
@@ -164,27 +178,18 @@ public class Lista {
     }
 
     public void borrar(int pos) {
-        if (pos <= cantidad()) {
-            if (pos == 1) {
-                raiz = raiz.sig;
-                if (raiz != null)
-                    raiz.ant = null;
-            } else {
-                Nodo reco;
-                reco = raiz;
-                for (int f = 1; f <= pos - 2; f++)
-                    reco = reco.sig;
-                Nodo prox = reco.sig;
-                prox = prox.sig;
-                reco.sig = prox;
-                if (prox != null)
-                    prox.ant = reco;
-            }
-        }
+        Nodo reco;
+        reco = raiz;
+        for (int f = 1; f <= pos - 2; f++)
+            reco = reco.sig;
+        Nodo prox = reco.sig;
+        prox = prox.sig;
+        reco.sig = prox;
+        if (prox != null)
+            prox.ant = reco;
     }
 
     public void limpiar() {
-
         raiz = null;
     }
 
@@ -201,7 +206,7 @@ public class Lista {
             i++;
             reco = reco.sig;
         }
-        return "La suma de [" + info + "] es " + sum;
+        return "La suma de [ " + info + " ] es " + sum;
     }
 
 }

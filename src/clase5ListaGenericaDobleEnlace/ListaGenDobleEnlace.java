@@ -1,5 +1,11 @@
 package clase5ListaGenericaDobleEnlace;
 
+import desempenio1.Lista;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ListaGenDobleEnlace {
 
     class Nodo {
