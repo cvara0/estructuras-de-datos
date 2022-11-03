@@ -17,7 +17,6 @@ public class Formulario extends JFrame{
     private JLabel jLabelLista;
     private JLabel jLabelConsigna2;
 
-    private FormServicio formServ;
 
     private Lista lista=new Lista();
 
@@ -160,8 +159,6 @@ public class Formulario extends JFrame{
         contentPane.add(FormServicio.setJLabel(
                 "Cristian V.R. Parra -- Desempeño 1 -- AED"
                 ,(int)(x*1.8),y*45,(int)(w*2.6),h));
-
-
     }
 
 }

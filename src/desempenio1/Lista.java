@@ -1,9 +1,5 @@
 package desempenio1;
 
-import clase5ListaGenericaDobleEnlace.ListaGenDobleEnlace;
-import clase6ProblemaAplicacionPila.AplicacionPila;
-import sun.util.locale.provider.JRELocaleConstants;
-
 public class Lista {
     private Nodo raiz;
 

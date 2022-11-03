@@ -1,4 +1,4 @@
-package desempenio1;
+package desempenio2;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -28,7 +28,7 @@ public class FormServicio {
     }
 
     public static JButton setJButton1(int x,int y,int w,int h){
-        JButton jButton= new JButton("Insertar par");
+        JButton jButton= new JButton("Insertar nodo");
         jButton.setBounds(x,y,w,h);
         return jButton;
     }
@@ -40,25 +40,7 @@ public class FormServicio {
     }
 
     public static JButton setJButton2(int x,int y,int w,int h){
-        JButton jButton= new JButton("<html>2 - Sumar todos los nodos de las posiciones impares.</html>");
-        jButton.setBounds(x,y,w,h);
-        return jButton;
-    }
-
-    public static JButton setJButton3(int x,int y,int w,int h){
-        JButton jButton= new JButton("<html>3 - Borrar el primero y el último nodo de la lista, dejando al resto correctamente enlazados. </html>");
-        jButton.setBounds(x,y,w,h);
-        return jButton;
-    }
-
-    public static JButton setJButton4(int x,int y,int w,int h){
-        JButton jButton= new JButton("<html>4 - Intercambiar el primer nodo con el último de la lista. </html>");
-        jButton.setBounds(x,y,w,h);
-        return jButton;
-    }
-
-    public static JButton setJButton5(int x,int y,int w,int h){
-        JButton jButton= new JButton("<html>5 - Borrar todos los nodos que coinciden con la información del primero de la lista.  </html>");
+        JButton jButton= new JButton("<html>2 - Mostrar mayor y menor de subárbol izquierdo, indique si el árbol o rama está vacío.</html>");
         jButton.setBounds(x,y,w,h);
         return jButton;
     }
