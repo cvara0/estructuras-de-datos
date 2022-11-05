@@ -27,14 +27,26 @@ public class FormServicio {
         return jTextField;
     }
 
-    public static JButton setJButton1(int x,int y,int w,int h){
+    public static JButton setJButtonInsertar(int x,int y,int w,int h){
         JButton jButton= new JButton("Insertar nodo");
+        jButton.setBounds(x,y,w,h);
+        return jButton;
+    }
+
+    public static JButton setjButtonBorrarMayorSubIzq(int x,int y,int w,int h){
+        JButton jButton= new JButton("Eliminar");
         jButton.setBounds(x,y,w,h);
         return jButton;
     }
 
     public static JButton setJButtonLimpiar(int x,int y,int w,int h){
         JButton jButton= new JButton("Limpiar");
+        jButton.setBounds(x,y,w,h);
+        return jButton;
+    }
+
+    public static JButton setJButtonVerificar(int x,int y,int w,int h){
+        JButton jButton= new JButton("Verificar:");
         jButton.setBounds(x,y,w,h);
         return jButton;
     }

@@ -8,9 +8,17 @@ import java.util.List;
 public class Arbol {
 
     int cant, altura;
-    int cont=0;
+    int cont = 0;
     Nodo raiz;
     String preList = "";
+    String entreList = "";
+    String postList = "";
+
+    String ingresosList = "";
+    String mayorDeSubArbolIzq = "";
+    String menorDeSubArbolIzq = "";
+    String existeEnPrimeros3Niveles = "No";
+    String cantidadHojasDeSubArbolIzq = "";
 
     public String getPreList() {
         return preList;
@@ -20,9 +28,28 @@ public class Arbol {
         this.preList = preList;
     }
 
+    public String getEntreList() {
+        return entreList;
+    }
+
+    public void setEntreList(String entreList) {
+        this.entreList = entreList;
+    }
+
+    public String getPostList() {
+        return postList;
+    }
+
+    public void setPostList(String postList) {
+        this.postList = postList;
+    }
+
+//////////////////////////insertar nodo///////////////////////////////////////
     public void insertarNodo(String infoString) {
         try {
-            this.preList="";
+            this.preList = "";
+            this.entreList = "";
+            this.postList = "";
             int info = Integer.parseInt(infoString);
             Nodo nuevo;
             nuevo = new Nodo();
@@ -51,51 +78,52 @@ public class Arbol {
         }
     }
 
-    /////////////////////////////////////////////////////////////////
+    //////////////////////////imprimir pre///////////////////////////////////////
     private void imprimirPre(Nodo reco) {
         if (reco != null) {
-            System.out.print(reco.info+ " ");
-           this.preList += reco.info+" ";
+            this.preList += " " + reco.info + " ";
             imprimirPre(reco.izq);
             imprimirPre(reco.der);
         }
-
     }
+
     public void imprimirPre() {
         imprimirPre(raiz);
     }
 
-    /////////////////////////////////////////////////////////////////
+    ////////////////////////////imprimir entre/////////////////////////////////////
     private void imprimirEntre(Nodo reco) {
         if (reco != null) {
             imprimirEntre(reco.izq);
-            System.out.print(reco.info + " ");
+            this.entreList += " " + reco.info + " ";
             imprimirEntre(reco.der);
         }
     }
 
     public void imprimirEntre() {
         imprimirEntre(raiz);
-        System.out.println();
     }
 
-    /////////////////////////////////////////////////////////////////
+    /////////////////////////////imprimir post////////////////////////////////////
     private void imprimirPost(Nodo reco) {
         if (reco != null) {
             imprimirPost(reco.izq);
             imprimirPost(reco.der);
-            System.out.print(reco.info + " ");
+            this.postList += " " + reco.info + " ";
         }
     }
 
     public void imprimirPost() {
         imprimirPost(raiz);
-        System.out.println();
     }
+
 
     /////////////////////////////////////////////////////////////////
 
     public void limpiar() {
         raiz = null;
     }
+
+    /////////////////////////////////////////////////////////////////
+    public void borrarMayorSubIzq(){}
 }
