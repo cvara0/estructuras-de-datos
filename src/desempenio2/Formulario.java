@@ -1,8 +1,5 @@
 package desempenio2;
 
-import desempenio2.FormServicio;
-
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -10,23 +7,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class Formulario extends JFrame{
     private JPanel contentPane;
-
-    private JLabel jLabel;
     private JTextField textField;
-
     private JTextField textFieldExiste;
-
     private JLabel jLabelArbolPre;
     private JLabel jLabelArbolEntre;
     private JLabel jLabelArbolPost;
     private JLabel jLabelListaIngresados;
     private JLabel jLabelMayorYMenorSubIzquierdo;
-
     private JLabel jLabelNodoRaiz;
-
     private JLabel jLabelExistePrimeros3niveles;
     private JLabel jLabelCantidadHojasDeSubArbolIzq;
-
     private String ingresoList="";
     private final Arbol arbol=new Arbol();
 
@@ -67,7 +57,7 @@ public class Formulario extends JFrame{
         JButton jButtonLimpiar = FormServicio.setJButtonLimpiar((int)(x*2.4), (int)(y*3), (int)(w*0.3), h);
         contentPane.add(jButtonLimpiar);
 
-        jLabelNodoRaiz=FormServicio.setJLabel("Raiz: --",(int)(x*0.2), y*8, (int)(w*0.5), h);
+        jLabelNodoRaiz=FormServicio.setJLabel("Raiz ( nivel 0 ): --",(int)(x*0.2), y*8, (int)(w*0.5), h);
         contentPane.add(jLabelNodoRaiz);
 
         jLabelArbolPre= FormServicio.setJLabel("Recorrido PreOrden: --",(int)(x*0.2),y*12,(int)(w*2.6),h);
@@ -124,7 +114,7 @@ public class Formulario extends JFrame{
                 arbol.setPreList("");
                 arbol.setEntreList("");
                 arbol.setPostList("");
-                jLabelNodoRaiz.setText("Raiz: --");
+                jLabelNodoRaiz.setText("Raiz ( nivel 0 ): --");
                 jLabelArbolPre.setText("Recorrido PreOrden: --");
                 jLabelArbolEntre.setText("Recorrido EntreOrden: --");
                 jLabelArbolPost.setText("Recorrido PostOrden: --");
@@ -143,8 +133,9 @@ public class Formulario extends JFrame{
         {
             public void actionPerformed(ActionEvent arg0) {
 
-                //arbol.insertarNodo(textField.getText());
-                jLabelExistePrimeros3niveles.setText("Si");
+                jLabelExistePrimeros3niveles.setText(arbol.existeEnPrimeros3Niveles(textFieldExiste.getText())?"Si":"No");
+                ingresoList+=arbol.getIngresoString()+"<br>";
+                jLabelListaIngresados.setText("<html>"+ingresoList+"</html>");
                 contentPane.updateUI();
             }
         });
@@ -175,7 +166,7 @@ public class Formulario extends JFrame{
         jLabelArbolPre.setText("Recorrido PreOrden: [ "+arbol.getPreList()+" ]");
         jLabelArbolEntre.setText("Recorrido EntreOrden: [ "+arbol.getEntreList()+" ]");
         jLabelArbolPost.setText("Recorrido PostOrden: [ "+arbol.getPostList()+" ]");
-        jLabelNodoRaiz.setText("Raiz: "+arbol.getRaiz());
+        jLabelNodoRaiz.setText("Raiz ( nivel 0 ): "+arbol.getRaiz());
         jLabelMayorYMenorSubIzquierdo.setText("[ "+arbol.hallarMayorDeSubArbolIzq()+" , "+arbol.hallarMenorDeSubArbolIzq()+" ]");
         jLabelCantidadHojasDeSubArbolIzq.setText(arbol.cantidadNodosHojaDeSubArbolIzq());
         contentPane.updateUI();

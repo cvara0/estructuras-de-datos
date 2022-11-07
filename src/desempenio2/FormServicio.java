@@ -6,7 +6,6 @@ import javax.swing.border.EmptyBorder;
 public class FormServicio {
 
 
-
     public static JPanel getContentPane() {
 
         JPanel jPanel = new JPanel();
@@ -56,5 +55,4 @@ public class FormServicio {
         jButton.setBounds(x,y,w,h);
         return jButton;
     }
-
 }

@@ -1,23 +1,13 @@
 package desempenio2;
 
-import clase10ArbolBinario.ArbolBinario2;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Arbol {
 
-    int cantHojaIzq, altura;
-    int cont = 0;
+    int cantHojaIzq;
     Nodo raiz;
     String preList = "";
     String entreList = "";
     String postList = "";
-
     String ingresoString = "";
-
-    String existeEnPrimeros3Niveles = "No";
-    String cantidadHojasDeSubArbolIzq = "";
 
     public String getPreList() {
         return preList;
@@ -59,20 +49,19 @@ public class Arbol {
             nuevo.info = info;
             nuevo.izq = null;
             nuevo.der = null;
-            if (raiz == null){
+            if (raiz == null) {
                 raiz = nuevo;
-                this.ingresoString="Nodo raiz: "+raiz.info;
-            }
-            else {
+                this.ingresoString = "Nodo raiz: " + raiz.info;
+            } else {
                 Nodo anterior = null;
                 Nodo reco = raiz;
                 while (reco != null) {
                     anterior = reco;
                     if (info < reco.info) {
-                        this.ingresoString=info+" - por izquierda del nodo "+reco.info;
+                        this.ingresoString = info + " - por izquierda del nodo " + reco.info;
                         reco = reco.izq;
                     } else {
-                        this.ingresoString=info+" - por derecha del nodo "+reco.info;
+                        this.ingresoString = info + " - por derecha del nodo " + reco.info;
                         reco = reco.der;
                     }
                 }
@@ -82,7 +71,7 @@ public class Arbol {
                     anterior.der = nuevo;
             }
         } catch (NumberFormatException e) {
-            this.ingresoString="Ingreso incorrecto";
+            this.ingresoString = "Ingreso incorrecto ( 1 )";
         }
     }
 
@@ -180,7 +169,6 @@ public class Arbol {
     }
 
     public void borrarMayorSubIzq() {
-
         if (raiz != null && raiz.izq != null) {
             Nodo reco = raiz.izq;
             Nodo anterior = reco;
@@ -188,15 +176,44 @@ public class Arbol {
                 anterior = reco;
                 reco = reco.der;
             }
-           if (reco==raiz.izq)
-                this.ingresoString="Nada que eliminar";
+            if (reco == raiz.izq)
+                this.ingresoString = "Nada que eliminar";
             else {
-            this.ingresoString="Eliminado nodo "+reco.info;
-            anterior.der = null;
-            anterior.izq=null;
+                this.ingresoString = "Eliminado nodo " + reco.info;
+                anterior.der = null;
             }
-        }else {
-            this.ingresoString="Nada que eliminar";
+        } else {
+            this.ingresoString = "Nada que eliminar";
         }
+    }
+
+    public Boolean existeEnPrimeros3Niveles(String infoString) {
+        try {
+            int info = Integer.parseInt(infoString);
+            int nivel = 0;
+            Nodo reco = raiz;
+            while (reco != null) {
+                if (info == reco.info){
+                    this.ingresoString = info+" si esta en los primeros 3 niveles";
+                    return true;
+                }
+                else if (info > reco.info) {
+                    nivel++;
+                    reco = reco.der;
+                } else {
+                    nivel++;
+                    reco = reco.izq;
+                }
+                if (nivel > 3){
+                    this.ingresoString = info+" no esta en los primeros 3 niveles";
+                    return false;
+                }
+            }
+            this.ingresoString = infoString+" no esta en los primeros 3 niveles";
+            return false;
+        } catch (NumberFormatException e) {
+            this.ingresoString = "Ingreso incorrecto ( 3 )";
+        }
+        return false;
     }
 }
