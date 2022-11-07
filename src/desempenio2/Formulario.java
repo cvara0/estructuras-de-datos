@@ -27,6 +27,7 @@ public class Formulario extends JFrame{
     private JLabel jLabelExistePrimeros3niveles;
     private JLabel jLabelCantidadHojasDeSubArbolIzq;
 
+    private String ingresoList="";
     private final Arbol arbol=new Arbol();
 
     ////////////////////////////main//////////////////////////////////
@@ -79,7 +80,8 @@ public class Formulario extends JFrame{
         contentPane.add(jLabelArbolPost);
 
         contentPane.add(FormServicio.setJLabel("Historial de insercion: ",(int)(x*0.2),y*24,(int)(w*2.6),h));
-        jLabelListaIngresados= FormServicio.setJLabel("--",(int)(x*0.2),y*28,(int)(w*2.6),h);
+        jLabelListaIngresados= FormServicio.setJLabel("--",(int)(x*0.2),y*28,(int)(w*2.6),(int)(h*6.5));
+        jLabelListaIngresados.setVerticalAlignment(SwingConstants.BOTTOM);
         contentPane.add(jLabelListaIngresados);
 
         contentPane.add(FormServicio.setJLabel("2 - Mayor y menor del subarbol izquierdo:",(int)(x*1.2),y*24,(int)(w*2.6),h));
@@ -106,23 +108,10 @@ public class Formulario extends JFrame{
         jButtonInsertar.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent arg0) {
-
                 arbol.insertarNodo(textField.getText());
-                textField.setText("");
-                arbol.imprimirPre();
-                arbol.imprimirEntre();
-                arbol.imprimirPost();
-                jLabelArbolPre.setText("Recorrido PreOrden: [ "+arbol.getPreList()+" ]");
-                jLabelArbolEntre.setText("Recorrido EntreOrden: [ "+arbol.getEntreList()+" ]");
-                jLabelArbolPost.setText("Recorrido PostOrden: [ "+arbol.getPostList()+" ]");
-
-                jLabelNodoRaiz.setText("Raiz: "+"9");
-
-                jLabelListaIngresados.setText("10 por derecha de 9");
-
-                jLabelMayorYMenorSubIzquierdo.setText("[ 10 12 ]");
-
-                jLabelCantidadHojasDeSubArbolIzq.setText("10");
+                ingresoList+=arbol.getIngresoString()+"<br>";
+                jLabelListaIngresados.setText("<html>"+ingresoList+"</html>");
+                refrescar();
                 contentPane.updateUI();
             }
         });
@@ -139,10 +128,12 @@ public class Formulario extends JFrame{
                 jLabelArbolPre.setText("Recorrido PreOrden: --");
                 jLabelArbolEntre.setText("Recorrido EntreOrden: --");
                 jLabelArbolPost.setText("Recorrido PostOrden: --");
-                jLabelListaIngresados.setText("--");//todo avisar que se elimino
+                jLabelListaIngresados.setText("--");
+                ingresoList="";
                 jLabelMayorYMenorSubIzquierdo.setText("--");
                 textField.setText("");
                 jLabelExistePrimeros3niveles.setText("--");
+                jLabelCantidadHojasDeSubArbolIzq.setText("--");
                 contentPane.updateUI();
             }
         });
@@ -163,25 +154,31 @@ public class Formulario extends JFrame{
             public void actionPerformed(ActionEvent arg0) {
 
                 arbol.borrarMayorSubIzq();
-                arbol.imprimirPre();
-                arbol.imprimirEntre();
-                arbol.imprimirPost();
-                jLabelArbolPre.setText("Recorrido PreOrden: [ "+arbol.getPreList()+" ]");
-                jLabelArbolEntre.setText("Recorrido EntreOrden: [ "+arbol.getEntreList()+" ]");
-                jLabelArbolPost.setText("Recorrido PostOrden: [ "+arbol.getPostList()+" ]");
-
-                jLabelListaIngresados.setText("10 por derecha de 9");
-
-                jLabelMayorYMenorSubIzquierdo.setText("[ 10 12 ]");
-
-                jLabelCantidadHojasDeSubArbolIzq.setText("10");
+                ingresoList+=arbol.getIngresoString()+"<br>";
+                jLabelListaIngresados.setText("<html>"+ingresoList+"</html>");
+                refrescar();
                 contentPane.updateUI();
             }
         });
 
+
+
         contentPane.add(FormServicio.setJLabel(
                 "Cristian V.R. Parra -- Desempeño 2 -- AED"
                 ,(int)(x*1.8),y*45,(int)(w*2.6),h));
+    }
+    public void refrescar(){
+        textField.setText("");
+        arbol.imprimirPre();
+        arbol.imprimirEntre();
+        arbol.imprimirPost();
+        jLabelArbolPre.setText("Recorrido PreOrden: [ "+arbol.getPreList()+" ]");
+        jLabelArbolEntre.setText("Recorrido EntreOrden: [ "+arbol.getEntreList()+" ]");
+        jLabelArbolPost.setText("Recorrido PostOrden: [ "+arbol.getPostList()+" ]");
+        jLabelNodoRaiz.setText("Raiz: "+arbol.getRaiz());
+        jLabelMayorYMenorSubIzquierdo.setText("[ "+arbol.hallarMayorDeSubArbolIzq()+" , "+arbol.hallarMenorDeSubArbolIzq()+" ]");
+        jLabelCantidadHojasDeSubArbolIzq.setText(arbol.cantidadNodosHojaDeSubArbolIzq());
+        contentPane.updateUI();
     }
 
 }
